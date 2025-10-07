@@ -69,6 +69,8 @@ fun IU() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
+            .fillMaxHeight()
+            .padding(24.dp)
             .background(Color.White),
         horizontalAlignment = Alignment.CenterHorizontally
     )
@@ -76,9 +78,10 @@ fun IU() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(24.dp)
+                .height(60.dp)
                 .background(Color.Cyan),
             horizontalArrangement = Arrangement.Center,
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 "Desarrollo en Android",
@@ -86,11 +89,10 @@ fun IU() {
                 textDecoration = TextDecoration.Underline
             )
         }
-        Spacer(Modifier.height(1.dp))
+        Spacer(Modifier.height(10.dp))
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(24.dp)
                 .height(100.dp)
                 .background(Color.LightGray),
             horizontalArrangement = Arrangement.SpaceAround,
@@ -141,12 +143,11 @@ fun IU() {
             }
         }
 
-    Spacer(Modifier.height(1.dp))
+    Spacer(Modifier.height(10.dp))
 
         Row {
             Box(
                 modifier = Modifier
-                    .padding(24.dp)
                     .size(200.dp, 200.dp)
                     .background(Color.Gray)
 

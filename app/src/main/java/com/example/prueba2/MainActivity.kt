@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -13,32 +12,38 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.CircleShape
+
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawWithCache
-import androidx.compose.ui.graphics.Brush
+
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.asComposePath
-import androidx.compose.ui.graphics.drawscope.scale
+
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
+
+//unidades de medida
 import androidx.compose.ui.unit.dp
-import androidx.graphics.shapes.CornerRounding
-import androidx.graphics.shapes.RoundedPolygon
-import androidx.graphics.shapes.toPath
+import androidx.compose.ui.unit.sp
+
 import com.example.prueba2.ui.theme.Prueba2Theme
+
+//imagen desde internet, tambien modificar build.gradle.kts:app y en manifiest el xml
+import androidx.compose.ui.layout.ContentScale
+import coil.compose.AsyncImage
+
+//imagen desde local
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,6 +91,7 @@ fun IU() {
             Text(
                 "Desarrollo en Android",
                 fontWeight = FontWeight.Bold,
+                fontSize = 30.sp,
                 textDecoration = TextDecoration.Underline
             )
         }
@@ -98,19 +104,27 @@ fun IU() {
             horizontalArrangement = Arrangement.SpaceAround,
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            Box(
-                Modifier
-                    .size(40.dp)
-                    .background(Color.Yellow)
-                    .border(2.dp, Color.Black)
-            ) {
-                Text("DAM")
-            }
-            Canvas (Modifier){
-                scale(scaleX = 10f, scaleY = 10f) {
-                    drawCircle(Color.Green, radius = 2.dp.toPx())
-                }
-            }
+            Text(
+                text = " DAM",
+                fontSize = 13.sp,
+                modifier = Modifier
+                    .size(70.dp)
+                    .background(color = Color.Yellow)
+                    .border(3.dp, color = Color.Black)
+                    .wrapContentSize(Alignment.CenterStart)
+                    .padding(horizontal = 5.dp)
+            )
+
+            Text(
+                text = "DAW",
+                fontSize = 13.sp,
+                modifier = Modifier
+                    .size(70.dp)
+                    .background(color = Color.Green, shape = CircleShape)
+                    .border(3.dp, color = Color.Black, shape = CircleShape)
+                    .wrapContentSize(Alignment.TopCenter)
+                    .padding(top = 5.dp)
+            )
 
 //            Box(
 //                modifier = Modifier
@@ -133,32 +147,46 @@ fun IU() {
 //                    .fillMaxSize()
 //            )
 
-            Box(
-                Modifier
-                    .background(Color.Magenta)
-                    .border(2.dp, Color.Black)
-                    .size(40.dp)
-            ) {
-                Text("ASIR")
-            }
+            Text(
+                text = "ASIR ",
+                fontSize = 13.sp,
+                modifier = Modifier
+                    .size(70.dp)
+                    .background(color = Color.Magenta)
+                    .border(3.dp, color = Color.Black)
+                    .wrapContentSize(Alignment.BottomEnd)
+                    .padding(bottom = 5.dp)
+            )
         }
 
-    Spacer(Modifier.height(10.dp))
+        Spacer(Modifier.height(10.dp))
 
         Row {
             Box(
                 modifier = Modifier
                     .size(200.dp, 200.dp)
                     .background(Color.Gray)
+                    .wrapContentSize(Alignment.Center)
 
             ) {
                 Text(
-                    modifier=Modifier.background(Color.DarkGray),
                     text = "Texto en un box",
-                    color=Color.White
+                    color = Color.White,
+                    modifier = Modifier
+                        .background(Color.DarkGray),
                 )
             }
         }
+
+        Image(
+            painter=painterResource(id=R.drawable.yo),
+            contentDescription = "Imagen cargada en local"
+        )
+
+        AsyncImage(
+            model = "https://media.istockphoto.com/id/613872668/es/foto/jack-o-linterna.webp?s=2048x2048&w=is&k=20&c=PY3vLknAGzgXpq2W1V0IUM2UoLxinvP5gJf0opjaEvw=",
+            contentDescription = "Imagen de"
+        )
     }
 }
 
